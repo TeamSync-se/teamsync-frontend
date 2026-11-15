@@ -82,7 +82,11 @@ Nguồn chuẩn là hệ thiết kế **Slate** ([`DESIGN.md`](design/DESIGN.md)
 
 - Mọi lời gọi tới backend đi qua `lib/api-client.ts`. Không gọi `fetch` trực tiếp trong component.
 - Địa chỉ backend lấy từ `NEXT_PUBLIC_API_URL`. Không viết cứng `http://localhost:8080` trong code.
+- Hợp đồng API nằm ở `docs/api/` của repo backend (quy ước chung ở `conventions.md`, từng phân hệ ở file riêng như `auth.md`). Issue frontend dẫn link tới đó, không chép lại. Kiểu dữ liệu trong `types.ts` phải khớp hợp đồng.
 - Lỗi từ backend được chuyển thành thông báo tiếng Việt rõ ràng cho người dùng (NFR-09): dữ liệu không hợp lệ, không có quyền, dịch vụ không phản hồi.
+- Lỗi backend có dạng `application/problem+json`. `ApiError` giữ `status`, `code` và `fieldErrors` (lấy từ `errors`). Xử lý theo `code`, không theo câu chữ; hiển thị `detail`; lỗi theo từng trường hiện ngay dưới ô nhập. Không có body (mất mạng, backend chưa chạy) thì dùng thông báo mặc định theo mã HTTP.
+- `401` có hai nghĩa: `INVALID_CREDENTIALS` ở API đăng nhập là sai thông tin, hiện lỗi trên form; `UNAUTHORIZED` ở API khác là phiên hết, xóa cookie và chuyển về `/login`.
+- Thời điểm backend trả là ISO 8601 UTC có chữ `Z`; đổi sang giờ Việt Nam khi hiển thị. Danh sách dài trả `{ items, page, size, totalItems, totalPages }`, `page` đếm từ 0.
 - Frontend ẩn nút mà người dùng không có quyền dùng, nhưng không coi đó là bảo mật. Phân quyền do backend quyết định.
 - Khi API chưa có: viết hàm trong `api.ts` trả dữ liệu giả đúng kiểu đã thống nhất, đánh dấu `// TODO(#<số issue>): nối API thật`. Khi backend xong chỉ cần thay thân hàm.
 
@@ -90,7 +94,9 @@ Nguồn chuẩn là hệ thiết kế **Slate** ([`DESIGN.md`](design/DESIGN.md)
 
 - Biến mới phải thêm vào `.env.example` kèm một dòng chú thích.
 - Biến có tiền tố `NEXT_PUBLIC_` lộ ra trình duyệt. Khoá AI, email, lưu trữ tệp không bao giờ nằm ở frontend (NFR-04).
-- Không lưu mật khẩu hay dữ liệu nhạy cảm vào `localStorage`. Cách giữ phiên đăng nhập sẽ theo quyết định chung với backend.
+- Không lưu mật khẩu hay dữ liệu nhạy cảm vào `localStorage`.
+- Phiên đăng nhập giữ bằng `accessToken` (JWT, sống 24 giờ) trong cookie do frontend đặt: `Path=/`, `SameSite=Lax`, hết hạn đúng `expiresAt`, thêm `Secure` khi chạy HTTPS. Không có refresh token; hết hạn thì đăng nhập lại. Chi tiết ở mục "Quyết định" của [roadmap.md](roadmap.md#quyết-định).
+- Không dùng `dangerouslySetInnerHTML` với dữ liệu lấy từ người dùng, vì token đọc được bằng JavaScript nên XSS là rủi ro chính.
 
 ## Thư viện
 
