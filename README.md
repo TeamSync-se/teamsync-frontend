@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# teamsync-frontend
 
-## Getting Started
+Giao diện web của **TeamSync – Hệ thống hỗ trợ làm việc nhóm trực tuyến** (đồ án môn Nhập môn Công nghệ phần mềm).
 
-First, run the development server:
+Backend nằm ở repo [teamwork-backend](https://github.com/TeamSync-se/teamwork-backend).
+
+## Công nghệ
+
+- Next.js 16 (App Router, Turbopack) + React 19
+- TypeScript (strict)
+- Tailwind CSS 4
+- ESLint (`eslint-config-next`)
+- Package manager: **pnpm** (không dùng npm hay yarn trong repo này)
+
+## Yêu cầu
+
+- Node.js 20.9 trở lên (nên dùng bản LTS mới nhất)
+- pnpm: `corepack enable` hoặc `npm install -g pnpm`
+- Backend đang chạy ở `http://localhost:8080` nếu cần gọi API thật (xem README của repo backend)
+
+## Chạy dự án
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+cp .env.example .env.local   # Windows PowerShell: Copy-Item .env.example .env.local
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Mở http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Lệnh thường dùng
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Lệnh | Tác dụng |
+| --- | --- |
+| `pnpm dev` | Chạy server phát triển, tự nạp lại khi sửa code |
+| `pnpm lint` | Kiểm tra code bằng ESLint |
+| `pnpm build` | Build bản production, đồng thời kiểm tra kiểu TypeScript |
+| `pnpm start` | Chạy bản đã build |
+| `pnpm add <gói>` | Thêm thư viện (phải nêu lý do trong PR) |
 
-## Learn More
+Trước khi mở pull request, `pnpm lint` và `pnpm build` phải chạy qua.
 
-To learn more about Next.js, take a look at the following resources:
+## Cấu trúc thư mục
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+src/
+  app/          Route và layout (App Router). Chỉ ghép nối, không chứa nghiệp vụ.
+  components/   Thành phần dùng chung giữa nhiều tính năng (ui/, layout/)
+  features/     Mỗi tính năng một thư mục: components, api, hooks, types
+  lib/          Hàm dùng chung: gọi API, đọc biến môi trường, tiện ích
+public/         Tệp tĩnh
+docs/           Tài liệu của repo frontend
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Hiện tại repo mới có `src/app` từ template; các thư mục còn lại được tạo dần theo [docs/roadmap.md](docs/roadmap.md).
 
-## Deploy on Vercel
+## Tài liệu
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Tài liệu | Nội dung |
+| --- | --- |
+| [docs/git-workflow.md](docs/git-workflow.md) | Quy tắc làm việc với Git và GitHub |
+| [docs/conventions.md](docs/conventions.md) | Quy ước viết code và tổ chức thư mục |
+| [docs/ai-rules.md](docs/ai-rules.md) | Quy tắc dùng công cụ AI khi làm việc trong repo |
+| [docs/roadmap.md](docs/roadmap.md) | Phương hướng phát triển và thứ tự công việc |
+| [docs/README.md](docs/README.md) | Mục lục tài liệu và quy tắc viết tài liệu Markdown |
+| [AGENTS.md](AGENTS.md) | Chỉ dẫn dành cho công cụ AI (Claude Code đọc qua `CLAUDE.md`) |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Yêu cầu nghiệp vụ (PA01, PA02, `features.md`) nằm ở thư mục `docs/requirements` của repo backend.
