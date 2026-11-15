@@ -67,7 +67,7 @@ Tên trong code viết bằng tiếng Anh. Chữ hiển thị cho người dùng
 
 ## Giao diện
 
-Nguồn chuẩn là hệ thiết kế **Slate** (`DESIGN.md`) và 27 màn hình prototype trong PA02 mục 5.
+Nguồn chuẩn là hệ thiết kế **Slate** ([`DESIGN.md`](design/DESIGN.md)) và 27 màn hình prototype trong [`design/prototype/`](design/prototype/).
 
 - Màu, cỡ chữ, bo góc, khoảng cách khai báo một lần trong `src/app/globals.css` bằng `@theme` của Tailwind 4, rồi dùng qua class (`bg-primary`, `text-secondary-text`). Không viết mã màu trực tiếp trong component.
 - Khoảng cách theo bội số 8px (4px cho chi tiết nhỏ). Bo góc 6–8px cho nút, ô nhập, thẻ.

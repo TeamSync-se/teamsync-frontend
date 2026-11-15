@@ -52,7 +52,7 @@ Sau khi sửa code, chạy `pnpm lint` và `pnpm build` rồi mới báo là xon
 
 ## Giao diện
 
-- Theo hệ thiết kế Slate và ảnh prototype của màn hình tương ứng. Nếu chưa được cung cấp prototype, hỏi trước khi tự thiết kế.
+- Theo hệ thiết kế Slate (`docs/design/DESIGN.md`) và ảnh prototype của màn hình tương ứng (`docs/design/prototype/<màn-hình>/screen.png`). Nếu chưa được cung cấp prototype, hỏi trước khi tự thiết kế.
 - Dùng token khai báo bằng `@theme` trong `src/app/globals.css`. Không viết mã màu trực tiếp trong component.
 - Tailwind CSS 4: cấu hình nằm trong CSS, không tạo `tailwind.config.js`.
 - Phông Inter, chữ nội dung 14–16px, khoảng cách bội số 8px, bo góc 6–8px, viền 1px thay cho đổ bóng. Không gradient, không hiệu ứng kính mờ, không nút dạng viên thuốc.

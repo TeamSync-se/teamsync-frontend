@@ -12,7 +12,7 @@
 Nguồn tham chiếu nằm ngoài repo này:
 
 - Yêu cầu nghiệp vụ: `docs/requirements/` của repo [teamwork-backend](https://github.com/TeamSync-se/teamwork-backend) (`features.md`, `PA01.md`, `PA02.md`).
-- Giao diện mẫu: 27 màn hình prototype (PA02 mục 5) và hệ thiết kế Slate (`DESIGN.md`). Việc đưa hai phần này vào repo frontend là một đầu việc của giai đoạn 0 trong roadmap.
+- Giao diện mẫu (trong repo này): hệ thiết kế Slate ở [design/DESIGN.md](design/DESIGN.md) và 27 màn hình prototype (ảnh `screen.png` và `code.html`) ở [design/prototype/](design/prototype/).
 
 ## Quy tắc viết tài liệu Markdown
 

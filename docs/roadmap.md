@@ -23,13 +23,13 @@ Tài liệu này nói frontend sẽ đi từ template hiện tại tới sản p
 - [x] Dọn template: xoá trang mẫu và ảnh SVG mẫu, đặt `lang="vi"`, sửa tiêu đề trang.
 - [x] Xoá `package-lock.json`, chỉ giữ `pnpm-lock.yaml`.
 - [x] Đưa token Slate (màu, chữ, bo góc, khoảng cách) vào `globals.css`; đổi phông sang Inter.
-- [ ] Thành phần cơ bản trong `components/ui`: Button, Input, Card, Modal, Badge, Table.
+- [x] Thành phần cơ bản trong `components/ui`: Button, Input, Card, Modal, Badge, Table.
 - [x] Khung trang đã đăng nhập (sidebar, header) và khung trang chưa đăng nhập.
-- [ ] `lib/api-client.ts`, `lib/env.ts`, cách xử lý lỗi chung.
+- [x] `lib/api-client.ts`, `lib/env.ts`, cách xử lý lỗi chung.
 - [ ] Cơ chế giữ phiên và chặn trang khi chưa đăng nhập (phụ thuộc quyết định với backend).
-- [ ] CI bằng GitHub Actions: chạy `pnpm lint` và `pnpm build` khi mở pull request.
+- [x] CI bằng GitHub Actions: chạy `pnpm lint` và `pnpm build` khi mở pull request.
 - [ ] Bật bảo vệ nhánh `main`, tạo nhãn và milestone (xem [git-workflow.md](git-workflow.md)).
-- [ ] Đưa `DESIGN.md` và prototype vào `docs/design/` của repo này để người và AI cùng tham chiếu.
+- [x] Đưa `DESIGN.md` và prototype vào `docs/design/` của repo này để người và AI cùng tham chiếu.
 - [ ] Kết nối thử frontend với backend sau khi backend cấu hình CORS.
 
 ### Giai đoạn 1 — Tài khoản và nhóm (F1)
