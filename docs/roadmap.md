@@ -26,7 +26,8 @@ Tài liệu này nói frontend sẽ đi từ template hiện tại tới sản p
 - [x] Thành phần cơ bản trong `components/ui`: Button, Input, Card, Modal, Badge, Table.
 - [x] Khung trang đã đăng nhập (sidebar, header) và khung trang chưa đăng nhập.
 - [x] `lib/api-client.ts`, `lib/env.ts`, cách xử lý lỗi chung.
-- [ ] Cơ chế giữ phiên và chặn trang khi chưa đăng nhập (phụ thuộc quyết định với backend).
+- [ ] Cơ chế giữ phiên và chặn trang khi chưa đăng nhập: token Bearer lưu cookie do frontend đặt, chặn trang bằng `proxy.ts` (quyết định đã chốt, xem mục "Quyết định").
+- [ ] Cập nhật `lib/api-client.ts` theo quy ước API chung của backend (`docs/api/conventions.md` ở repo backend): đọc lỗi `problem+json` (`code`, `detail`, `errors`), gắn header `Authorization`, xử lý `401`, kiểu `Page<T>`.
 - [x] CI bằng GitHub Actions: chạy `pnpm lint` và `pnpm build` khi mở pull request.
 - [ ] Bật bảo vệ nhánh `main`, tạo nhãn và milestone (xem [git-workflow.md](git-workflow.md)).
 - [x] Đưa `DESIGN.md` và prototype vào `docs/design/` của repo này để người và AI cùng tham chiếu.
@@ -100,9 +101,6 @@ Mọi tính năng khác đều cần đăng nhập và có nhóm, nên làm trư
 
 | # | Câu hỏi | Đề xuất | Cần ai |
 | --- | --- | --- | --- |
-| 1 | Giữ phiên đăng nhập bằng gì: cookie `httpOnly` hay token gửi qua header? | Cookie `httpOnly` do backend đặt, frontend không tự lưu token | Backend |
-| 2 | Hợp đồng API ghi ở đâu trước khi có OpenAPI? | Ghi trong issue backend: đường dẫn, dữ liệu vào, dữ liệu ra, mã lỗi | Backend |
-| 3 | Dạng lỗi chung backend trả về? | Một dạng JSON thống nhất có mã lỗi và thông báo | Backend |
 | 8 | Ai làm phân hệ nào ở giai đoạn 2? | Chia theo bảng giai đoạn 2, mỗi phân hệ một người chính | Cả nhóm |
 | 9 | Issue frontend đặt ở repo nào? | Repo frontend, dẫn link sang issue backend tương ứng | Cả nhóm |
 
@@ -114,6 +112,10 @@ Ghi lại quyết định kỹ thuật đã chốt, mới nhất ở trên.
 
 | Ngày | Quyết định | Lý do |
 | --- | --- | --- |
+| 2026-11-15 | Giữ phiên bằng token Bearer: backend trả `accessToken` (sống 24 giờ, không có refresh token, hết hạn thì đăng nhập lại); frontend lưu vào cookie không `HttpOnly` (`Path=/`, `SameSite=Lax`, hết hạn đúng `expiresAt`, `Secure` khi chạy HTTPS) và gắn header `Authorization: Bearer`. Thay cho đề xuất cũ là cookie `httpOnly` do backend đặt | Theo hợp đồng `docs/api/auth.md` của backend: không ràng buộc tên miền chung khi triển khai, không cần API đăng xuất. Đổi lại frontend phải tránh XSS (không dùng `dangerouslySetInnerHTML` với dữ liệu người dùng) |
+| 2026-11-15 | Hợp đồng API chỉ ghi ở thư mục `docs/api/` của repo backend; issue frontend dẫn link, không chép lại | Chỉ có một nguồn, tránh hai bên lệch nhau |
+| 2026-11-15 | Lỗi từ backend theo chuẩn Problem Details (`application/problem+json`) có `code`, `detail`, `errors`; frontend xử lý theo `code`, hiển thị `detail` | Theo quy ước API chung của backend |
+| 2026-11-15 | Chặn trang chưa đăng nhập bằng `src/proxy.ts` (Next.js 16 đổi tên middleware thành proxy), chỉ kiểm tra cookie có và còn hạn | Kiểm tra nhanh, không nháy trang; bảo vệ dữ liệu thật vẫn do backend |
 | 2026-11-15 | Dùng pnpm làm package manager duy nhất | Tránh hai lockfile lệch nhau |
 | 2026-11-15 | Mô hình nhánh GitHub Flow, squash merge | Nhóm nhỏ, cần đơn giản và `main` luôn chạy được |
 | 2026-11-15 | Claude Code là công cụ AI của nhóm; chỉ dẫn đặt ở `AGENTS.md` | Một nguồn chỉ dẫn chung cho cả nhóm |
