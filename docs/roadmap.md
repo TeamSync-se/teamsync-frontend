@@ -103,10 +103,6 @@ Mọi tính năng khác đều cần đăng nhập và có nhóm, nên làm trư
 | 1 | Giữ phiên đăng nhập bằng gì: cookie `httpOnly` hay token gửi qua header? | Cookie `httpOnly` do backend đặt, frontend không tự lưu token | Backend |
 | 2 | Hợp đồng API ghi ở đâu trước khi có OpenAPI? | Ghi trong issue backend: đường dẫn, dữ liệu vào, dữ liệu ra, mã lỗi | Backend |
 | 3 | Dạng lỗi chung backend trả về? | Một dạng JSON thống nhất có mã lỗi và thông báo | Backend |
-| 4 | Quản lý dữ liệu từ server ở frontend? | TanStack Query cho phần client; chưa cần thư viện state toàn cục | Frontend |
-| 5 | Form và kiểm tra dữ liệu? | React Hook Form kết hợp Zod | Frontend |
-| 6 | Thư viện WebSocket? | `@stomp/stompjs`, khớp với Spring WebSocket/STOMP | Frontend, backend |
-| 7 | Bộ biểu tượng? | Material Symbols Outlined như prototype | Frontend |
 | 8 | Ai làm phân hệ nào ở giai đoạn 2? | Chia theo bảng giai đoạn 2, mỗi phân hệ một người chính | Cả nhóm |
 | 9 | Issue frontend đặt ở repo nào? | Repo frontend, dẫn link sang issue backend tương ứng | Cả nhóm |
 
@@ -121,3 +117,4 @@ Ghi lại quyết định kỹ thuật đã chốt, mới nhất ở trên.
 | 2026-11-15 | Dùng pnpm làm package manager duy nhất | Tránh hai lockfile lệch nhau |
 | 2026-11-15 | Mô hình nhánh GitHub Flow, squash merge | Nhóm nhỏ, cần đơn giản và `main` luôn chạy được |
 | 2026-11-15 | Claude Code là công cụ AI của nhóm; chỉ dẫn đặt ở `AGENTS.md` | Một nguồn chỉ dẫn chung cho cả nhóm |
+| 2026-11-15 | Thêm TanStack Query (dữ liệu server), React Hook Form + Zod (form), `@stomp/stompjs` (WebSocket STOMP), `lucide-react` (biểu tượng, thay Material Symbols của prototype) | Nhóm đã chốt; khớp Spring WebSocket/STOMP, bộ biểu tượng nhẹ dùng được với React |
