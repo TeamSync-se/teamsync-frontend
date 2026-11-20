@@ -22,6 +22,14 @@ Giao diện web của TeamSync, hệ thống hỗ trợ làm việc nhóm trực
 - `docs/roadmap.md` — thứ tự công việc, bản đồ màn hình và đường dẫn.
 - `docs/git-workflow.md` — nhánh, commit, pull request.
 
+## Phạm vi làm việc và backend
+
+- Chỉ làm việc trong thư mục `frontend/`. Thư mục `backend/` (clone của repo teamwork-backend, ở cùng cấp) chỉ để **đọc và tham chiếu**: không sửa, không tạo file, không commit, không pull hay đổi nhánh ở đó. Người dùng tự cập nhật backend.
+- Hợp đồng API nằm ở `../backend/docs/api/` (`conventions.md` cho quy ước chung và định dạng lỗi, `auth.md` cho đăng ký/đăng nhập, các file phân hệ khác thêm dần). Đọc đúng file của phân hệ đang làm trước khi viết `api.ts` và `types.ts`; kiểu dữ liệu, mã lỗi (`code`) và trường `errors` phải khớp hợp đồng.
+- Khi cần biết API thật hoạt động ra sao, đọc thêm controller và DTO trong `../backend/src/main/java/`. Nếu code backend mâu thuẫn hợp đồng hoặc hợp đồng chưa có, báo người dùng, không tự suy đoán.
+- Lỗi từ backend theo chuẩn Problem Details (`application/problem+json`): xử lý theo `code`, hiển thị `detail`, hiện `errors` dưới từng ô nhập. Trường `errors` chỉ có khi `code` là `VALIDATION_ERROR`.
+- Mọi API (trừ `/api/auth/**` và `/api/health`) cần header `Authorization: Bearer <accessToken>`; gặp `401` thì xoá token và chuyển về trang Đăng nhập.
+
 ## Lệnh
 
 Chỉ dùng pnpm. Không dùng npm hay yarn, không tạo `package-lock.json`.
