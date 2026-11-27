@@ -31,15 +31,15 @@ Tài liệu này nói frontend sẽ đi từ template hiện tại tới sản p
 - [x] CI bằng GitHub Actions: chạy `pnpm lint` và `pnpm build` khi mở pull request.
 - [ ] Bật bảo vệ nhánh `main`, tạo nhãn và milestone (xem [git-workflow.md](git-workflow.md)).
 - [x] Đưa `DESIGN.md` và prototype vào `docs/design/` của repo này để người và AI cùng tham chiếu.
-- [ ] Kết nối thử frontend với backend sau khi backend cấu hình CORS (backend PR #50 cấu hình CORS và `/api/health`, đang chờ merge). Thử bằng cách gọi `GET /api/health` từ `localhost:3000` rồi đọc kết quả trong trang thật.
+- [x] Kết nối thử frontend với backend (đã thử ngày 2026-11-27): từ `localhost:3000`, `GET /api/health` qua `apiFetch` trả `UP`; `GET /api/users/me` kèm `Authorization` qua được preflight (nhận `401`, không lỗi CORS); backend tắt thì hiện thông báo không kết nối được.
 
-### Trạng thái backend (cập nhật 2026-11-20)
+### Trạng thái backend (cập nhật 2026-11-27)
 
 | Thứ | Trạng thái |
 | --- | --- |
 | Định dạng lỗi chung `problem+json` (#6) | Đã merge |
-| CORS và `GET /api/health` (#1) | PR #50 chờ merge |
-| `POST /api/auth/register` (#8) | PR #52 (draft), phụ thuộc #50 |
+| CORS và `GET /api/health` (#1) | Đã merge |
+| `POST /api/auth/register` (#8) | Đã merge |
 | Đăng nhập, `GET /api/users/me` (#9) | Chưa làm; chưa có token để gọi API cần đăng nhập |
 
 Giao diện đăng ký làm với API thật được; giao diện đăng nhập tạm dùng dữ liệu giả trong `api.ts` (đánh dấu `TODO(#9)`) tới khi backend xong.
