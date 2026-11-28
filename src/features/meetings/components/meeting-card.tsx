@@ -107,19 +107,21 @@ export function MeetingCard({ groupId, meeting }: MeetingCardProps) {
         )}
       </div>
 
-      <div className="flex flex-wrap items-center gap-2 pt-1">
+      <div className="flex items-center gap-2 pt-1">
         {needsMyVote ? (
           <Link
             href={detailHref}
-            className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 rounded-md bg-primary-container px-3 text-label-md text-on-primary transition-colors hover:bg-primary-hover"
+            className="inline-flex h-10 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-md bg-primary-container px-3 text-label-md text-on-primary transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container/30"
           >
-            <Vote className="size-4" aria-hidden="true" />
+            <Vote className="size-4 shrink-0" aria-hidden="true" />
             Bình chọn ngay
           </Link>
         ) : null}
         <Link
           href={detailHref}
-          className="inline-flex h-10 flex-1 items-center justify-center rounded-md border border-border bg-surface px-3 text-label-md text-primary-text transition-colors hover:bg-background"
+          className={`inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md border border-border bg-surface text-label-md text-primary-text transition-colors hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container/30 ${
+            needsMyVote ? "shrink-0 px-4" : "flex-1 px-3"
+          }`}
         >
           Chi tiết
         </Link>

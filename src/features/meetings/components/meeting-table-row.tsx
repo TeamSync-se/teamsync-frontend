@@ -125,7 +125,7 @@ export function MeetingTableRow({ groupId, meeting }: MeetingTableRowProps) {
           {needsMyVote ? (
             <Link
               href={detailHref}
-              className="inline-flex h-9 items-center gap-1.5 rounded-md bg-primary-container px-3 text-label-md text-on-primary transition-colors hover:bg-primary-hover"
+              className="inline-flex h-9 items-center gap-1.5 rounded-md bg-primary-container px-3 text-label-md text-on-primary transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container/30"
             >
               <Vote className="size-4" aria-hidden="true" />
               Bình chọn ngay
@@ -133,7 +133,7 @@ export function MeetingTableRow({ groupId, meeting }: MeetingTableRowProps) {
           ) : null}
           <Link
             href={detailHref}
-            className="inline-flex h-9 items-center rounded-md border border-border bg-surface px-3 text-label-md text-primary-text transition-colors hover:bg-background"
+            className="inline-flex h-9 items-center rounded-md border border-border bg-surface px-3 text-label-md text-primary-text transition-colors hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container/30"
           >
             Chi tiết
           </Link>

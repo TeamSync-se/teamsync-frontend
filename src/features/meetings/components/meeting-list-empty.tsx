@@ -43,7 +43,7 @@ export function MeetingListEmpty({
         {isAll ? (
           <Link
             href={`/groups/${groupId}/meetings/new`}
-            className="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-primary-container px-4 text-label-md text-on-primary transition-colors hover:bg-primary-hover"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-md bg-primary-container px-4 text-label-md text-on-primary transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container/30"
           >
             <Plus className="size-4" aria-hidden="true" />
             Tạo cuộc họp

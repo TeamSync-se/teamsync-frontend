@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 type MeetingListErrorProps = {
   message: string;
   isNotFound?: boolean;
+  isRetrying?: boolean;
   onRetry?: () => void;
 };
 
@@ -14,6 +15,7 @@ type MeetingListErrorProps = {
 export function MeetingListError({
   message,
   isNotFound = false,
+  isRetrying = false,
   onRetry,
 }: MeetingListErrorProps) {
   return (
@@ -33,14 +35,14 @@ export function MeetingListError({
       <p className="mt-1 max-w-md text-body-md text-secondary-text">{message}</p>
       <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
         {onRetry ? (
-          <Button variant="secondary" onClick={onRetry}>
-            Thử lại
+          <Button variant="secondary" disabled={isRetrying} onClick={onRetry}>
+            {isRetrying ? "Đang thử lại..." : "Thử lại"}
           </Button>
         ) : null}
         {isNotFound ? (
           <Link
             href="/groups"
-            className="inline-flex h-10 items-center justify-center rounded-md bg-primary-container px-4 text-label-md text-on-primary transition-colors hover:bg-primary-hover"
+            className="inline-flex h-10 items-center justify-center rounded-md bg-primary-container px-4 text-label-md text-on-primary transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container/30"
           >
             Quay lại Nhóm của tôi
           </Link>

@@ -22,5 +22,5 @@ export function MeetingsView({ rawGroupId }: MeetingsViewProps) {
     );
   }
 
-  return <MeetingsContent groupId={groupId} />;
+  return <MeetingsContent key={groupId} groupId={groupId} />;
 }

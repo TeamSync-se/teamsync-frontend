@@ -27,10 +27,8 @@ export function MeetingsContent({ groupId }: MeetingsContentProps) {
   const [status, setStatus] = useState<MeetingFilterStatus>("ALL");
   const [page, setPage] = useState(0);
 
-  const { data, isPending, isError, error, refetch } = useGroupMeetings(
-    groupId,
-    { status, page, size: MEETING_LIST_PAGE_SIZE },
-  );
+  const { data, isPending, isFetching, isError, error, refetch } =
+    useGroupMeetings(groupId, { status, page, size: MEETING_LIST_PAGE_SIZE });
 
   const handleStatusChange = (nextStatus: MeetingFilterStatus) => {
     setStatus(nextStatus);
@@ -59,7 +57,7 @@ export function MeetingsContent({ groupId }: MeetingsContentProps) {
         </div>
         <Link
           href={`/groups/${groupId}/meetings/new`}
-          className="inline-flex h-10 w-full shrink-0 items-center justify-center gap-2 rounded-md bg-primary-container px-4 text-label-md text-on-primary transition-colors hover:bg-primary-hover sm:w-auto"
+          className="inline-flex h-10 w-full shrink-0 items-center justify-center gap-2 rounded-md bg-primary-container px-4 text-label-md text-on-primary transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container/30 sm:w-auto"
         >
           <Plus className="size-4" aria-hidden="true" />
           Tạo cuộc họp
@@ -74,6 +72,7 @@ export function MeetingsContent({ groupId }: MeetingsContentProps) {
         <MeetingListError
           message={errorMessage}
           isNotFound={isNotFound}
+          isRetrying={isFetching}
           onRetry={() => {
             void refetch();
           }}
